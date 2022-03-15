@@ -1,15 +1,29 @@
-const HamburgerOpenToggle = document.querySelector(".ham_icon");
-const HamburgerCloseToggle = document.querySelector(".close_ham");
-const navItems = document.querySelector(".nav-items");
+const icon = document.getElementById("search_icon");
+const input = document.getElementById("searchbar");
 
-HamburgerOpenToggle.addEventListener('click', OpenHam)
-HamburgerCloseToggle.addEventListener('click', CloseHam)
+const filterFunction = () => {
+  const images = document.querySelectorAll(".images");
+  images.forEach((image) => {
+    let searchedWord = image.querySelector("p");
+    if (
+      searchedWord.innerHTML.toUpperCase().indexOf(input.value.toUpperCase()) >
+      -1
+    ) {
+      image.style.display = "";
+      console.log("hello")
+      
+    } 
+    // else if(input.value == " ")
+    // {
+    //   clearInput();
+    // } 
+    else { 
+      image.style.display = "none";
+    }
+  });
+};
+icon.addEventListener("click", filterFunction);
 
-function OpenHam(){
-    navItems.style.color = "red";
-    navItems.style.top = "0";
-}
-
-function CloseHam(){
-    navItems.style.top= "-100%"
-}
+// const clearInput = () => {
+//   return window.location.reload();
+// }
